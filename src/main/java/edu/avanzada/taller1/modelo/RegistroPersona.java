@@ -13,16 +13,16 @@ import java.util.List;
 
 public class RegistroPersona {
     private List<Persona> personasRegistradas;
-    
+
     public RegistroPersona(){
         this.personasRegistradas = new ArrayList<>();
     }
-    
+
     public List<Persona> getPersonasRegistradas(){
         return personasRegistradas;
     }
-    
-    public boolean existePersona(String cedula){
+
+    public boolean existePersona(int cedula){
         for (Persona persona : personasRegistradas){
             if(persona.getCedula().equals(cedula)){
                 return true;
@@ -30,7 +30,7 @@ public class RegistroPersona {
         }
         return false;
     }
-    
+
     public boolean registrarPersona(Persona nuevaPersona){
         if(!existePersona(nuevaPersona.getCedula())){
             personasRegistradas.add(nuevaPersona);
