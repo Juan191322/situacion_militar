@@ -5,7 +5,7 @@
 package edu.avanzada.taller1.modelo;
 
 /**
- *
+ * Clase para representar a una persona reservista.
  * @author user
  */
 public class Reservista extends Persona {
@@ -15,6 +15,8 @@ public class Reservista extends Persona {
         super(nombre, apellido, cedula);
         this.numeroLibretaMilitar = numeroLibretaMilitar;
     }
+    
+    // Getter y Setter de numeroLibretaMilitar
 
     public String getNumeroLibretaMilitar(){
         return numeroLibretaMilitar;

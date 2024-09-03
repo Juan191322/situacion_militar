@@ -5,7 +5,7 @@
 package edu.avanzada.taller1.modelo;
 
 /**
- *
+ * Clase que representa a una persona Remiso.
  * @author user
  */
 public class Remiso extends Persona{

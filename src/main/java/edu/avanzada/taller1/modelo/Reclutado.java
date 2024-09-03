@@ -5,7 +5,7 @@
 package edu.avanzada.taller1.modelo;
 
 /**
- *
+ * Clase que representa a una persona reclutada.
  * @author user
  */
 public class Reclutado extends Persona {
@@ -15,6 +15,8 @@ public class Reclutado extends Persona {
         super(nombre, apellido, cedula);
         this.codigoReclutamiento = codigoReclutamiento;
     }
+    
+    // Getter y setter de codigoReclutamiento
 
     public String getCodigoReclutamiento(){
         return codigoReclutamiento;

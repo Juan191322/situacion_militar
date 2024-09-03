@@ -5,7 +5,7 @@
 package edu.avanzada.taller1.modelo;
 
 /**
- *
+ * Clase base que representa a una persona.
  * @author user
  */
 public class Persona {
@@ -18,6 +18,8 @@ public class Persona {
         this.apellido = apellido;
         this.cedula = cedula;
     }
+    
+    // Getters y setters para los atriutos
 
     public String getNombre(){
         return nombre;

@@ -4,29 +4,26 @@
  */
 package edu.avanzada.taller1.control;
 
-import edu.avanzada.taller1.modelo.Aplazado;
-import edu.avanzada.taller1.modelo.Persona;
-import edu.avanzada.taller1.modelo.Reclutado;
-import edu.avanzada.taller1.modelo.RegistroPersona;
-import edu.avanzada.taller1.modelo.Remiso;
-import edu.avanzada.taller1.modelo.Reservista;
+import edu.avanzada.taller1.modelo.*;
 import edu.avanzada.taller1.vista.VistaPersona;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
- *
+ * Clase que controla la logica del programa.
  * @author user
  */
 public class ControladorPersona {
     private RegistroPersona registro;
-    private VistaPersona view ;
+    private VistaPersona view;
 
     public ControladorPersona(){
         this.registro = new RegistroPersona();
     }
 
-    public boolean insertarPersona(String nombre, String apellido,int cedula,  String tipoPersona, String datoAdicional){
+    public boolean insertarPersona(String nombre, String apellido,String cedula,  String tipoPersona, String datoAdicional){
         Persona nuevaPersona;
 
         switch (tipoPersona.toLowerCase()){
@@ -34,7 +31,7 @@ public class ControladorPersona {
                 nuevaPersona = new Remiso(nombre, apellido, cedula);
                 break;
             case "aplazado":
-                nuevaPersona = new Aplazado(nombre, apellido, cedula, datoAdicional);
+                nuevaPersona = new Aplazado(nombre, apellido, cedula, parceFecha(datoAdicional));
                 break;
             case "reclutado":
                 nuevaPersona = new Reclutado(nombre, apellido, cedula, datoAdicional);
@@ -48,20 +45,26 @@ public class ControladorPersona {
 
         return registro.registrarPersona(nuevaPersona);
     }
-
-
-
-
-    public boolean validarCedula(RegistroPersona registro, int cedula) {
-        List<Persona> c = registro.getPersonasRegistradas();
-        for (Persona persona : c) {
-            if (cedula == persona.getCedula()) {
-                view.mostrarInfo();
-                return true; // Si la cedula ya está registrada, devuelve...
-            }
+    
+    // Convierte una cadena de texto en una fecha
+    private Date parseFecha(String fecha) {
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            return formato.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
         }
-        view.mostrarFalsos();
-
-    });
-
+    }
+    
+    // Valida si una cedula ya esta en el sistema
+    public boolean validarCedula(String cedula) {
+        if (registro.existePersona(cedula)) {
+            view.mostrarInfo(); // Muestra información de que la cédula existe
+            return true;
+        } else {
+            view.mostrarFalsos(); // Muestra información de que la cédula no existe
+            return false;
+        }
+    }
 }

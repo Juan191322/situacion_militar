@@ -4,15 +4,20 @@
  */
 package edu.avanzada.taller1.modelo;
 
-/**
- *
- * @author user
- */
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que gestiona el registro de personas.
+ * @author user
+ */
 public class RegistroPersona {
     private List<Persona> personasRegistradas;
+    
+    /**
+     * Constructor de la clase RegustroPersona
+     * inicializa la lista de personas registrabas
+     */
 
     public RegistroPersona(){
         this.personasRegistradas = new ArrayList<>();
@@ -21,8 +26,9 @@ public class RegistroPersona {
     public List<Persona> getPersonasRegistradas(){
         return personasRegistradas;
     }
-
-    public boolean existePersona(int cedula){
+    
+    // Verificar si una cédula existe en el registro
+    public boolean existePersona(String cedula){
         for (Persona persona : personasRegistradas){
             if(persona.getCedula().equals(cedula)){
                 return true;
@@ -30,7 +36,8 @@ public class RegistroPersona {
         }
         return false;
     }
-
+    
+    // Registrar a una nueva perosna 
     public boolean registrarPersona(Persona nuevaPersona){
         if(!existePersona(nuevaPersona.getCedula())){
             personasRegistradas.add(nuevaPersona);
