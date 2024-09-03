@@ -22,7 +22,7 @@ public class RegistroPersona {
         return personasRegistradas;
     }
     
-    public boolean existePersona(String cedula){
+    public boolean existePersona(int cedula){
         for (Persona persona : personasRegistradas){
             if(persona.getCedula().equals(cedula)){
                 return true;
