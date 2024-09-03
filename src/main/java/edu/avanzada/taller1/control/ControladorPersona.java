@@ -10,6 +10,9 @@ import edu.avanzada.taller1.modelo.Reclutado;
 import edu.avanzada.taller1.modelo.RegistroPersona;
 import edu.avanzada.taller1.modelo.Remiso;
 import edu.avanzada.taller1.modelo.Reservista;
+import edu.avanzada.taller1.vista.VistaPersona;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,12 +20,13 @@ import edu.avanzada.taller1.modelo.Reservista;
  */
 public class ControladorPersona {
     private RegistroPersona registro;
+    private VistaPersona view ;
     
     public ControladorPersona(){
         this.registro = new RegistroPersona();
     }
     
-    public boolean insertarPersona(String nombre, String apellido, String cedula,  String tipoPersona, String datoAdicional){
+    public boolean insertarPersona(String nombre, String apellido,int cedula,  String tipoPersona, String datoAdicional){
         Persona nuevaPersona;
         
         switch (tipoPersona.toLowerCase()){
@@ -44,4 +48,20 @@ public class ControladorPersona {
         
         return registro.registrarPersona(nuevaPersona);
     }
+    
+    
+    
+    
+    public boolean validarCedula(RegistroPersona registro, int cedula) {
+        List<Persona> c = registro.getPersonasRegistradas();
+        for (Persona persona : c) {
+            if (cedula == persona.getCedula()) {
+                view.mostrarInfo();
+                return true; // Si la cedula ya está registrada, devuelve...
+            }
+        }
+        view.mostrarFalsos();
+        
+    });
+    
 }
