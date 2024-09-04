@@ -5,7 +5,6 @@
 package edu.avanzada.taller1.control;
 
 import edu.avanzada.taller1.modelo.*;
-import edu.avanzada.taller1.vista.VistaPersona;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +16,6 @@ import java.util.List;
  */
 public class ControladorPersona {
     private RegistroPersona registro;
-    private VistaPersona view;
 
     public ControladorPersona(){
         this.registro = new RegistroPersona();
@@ -31,7 +29,7 @@ public class ControladorPersona {
                 nuevaPersona = new Remiso(nombre, apellido, cedula);
                 break;
             case "aplazado":
-                nuevaPersona = new Aplazado(nombre, apellido, cedula, parceFecha(datoAdicional));
+                nuevaPersona = new Aplazado(nombre, apellido, cedula, parseFecha(datoAdicional));
                 break;
             case "reclutado":
                 nuevaPersona = new Reclutado(nombre, apellido, cedula, datoAdicional);
@@ -60,10 +58,8 @@ public class ControladorPersona {
     // Valida si una cedula ya esta en el sistema
     public boolean validarCedula(String cedula) {
         if (registro.existePersona(cedula)) {
-            view.mostrarInfo(); // Muestra información de que la cédula existe
             return true;
         } else {
-            view.mostrarFalsos(); // Muestra información de que la cédula no existe
             return false;
         }
     }
