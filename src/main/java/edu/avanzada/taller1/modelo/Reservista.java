@@ -13,6 +13,7 @@ public class Reservista extends Persona {
 
     public Reservista(String nombre, String apellido, String cedula, String numeroLibretaMilitar){
         super(nombre, apellido, cedula);
+        this.setEstado(EstadoPersona.Reservista);
         this.numeroLibretaMilitar = numeroLibretaMilitar;
     }
     

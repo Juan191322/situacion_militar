@@ -37,6 +37,17 @@ public class RegistroPersona {
         return false;
     }
     
+    
+    public Persona buscarPersona(String cedula) {
+        for (Persona persona : personasRegistradas) {
+            if (persona.getCedula().equals(cedula)) {
+                return persona;
+            }
+        }
+        return null;
+    }
+    
+    
     // Registrar a una nueva perosna 
     public boolean registrarPersona(Persona nuevaPersona){
         if(!existePersona(nuevaPersona.getCedula())){
@@ -46,4 +57,23 @@ public class RegistroPersona {
             return false;
         }
     }
+    
+    public void removerPersona(String cedula) {
+        personasRegistradas.removeIf(persona -> persona.getCedula().equals(cedula));
+    }
+    
+    // Obetener personas por estado
+     public List<Persona> obtenerPersonasPorEstado(Persona.EstadoPersona estado) {
+        List<Persona> resultado = new ArrayList<>();
+        for (Persona persona : personasRegistradas) {
+            if (persona.getEstado() == estado) {
+                resultado.add(persona);
+            }
+        }
+        return resultado;
+    }
 }
+
+
+
+

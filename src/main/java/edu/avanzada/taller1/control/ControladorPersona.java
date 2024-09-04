@@ -4,63 +4,51 @@
  */
 package edu.avanzada.taller1.control;
 
-import edu.avanzada.taller1.modelo.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import edu.avanzada.taller1.modelo.Aplazado;
+import edu.avanzada.taller1.modelo.Persona;
+import edu.avanzada.taller1.modelo.Reclutado;
+import edu.avanzada.taller1.modelo.RegistroPersona;
+import edu.avanzada.taller1.modelo.Remiso;
+import edu.avanzada.taller1.modelo.Reservista;
 import java.util.List;
 
-/**
- * Clase que controla la logica del programa.
- * @author user
- */
 public class ControladorPersona {
     private RegistroPersona registro;
-
-    public ControladorPersona(){
-        this.registro = new RegistroPersona();
+    
+    public ControladorPersona(RegistroPersona registro) {
+        this.registro = registro;
     }
 
-    public boolean insertarPersona(String nombre, String apellido,String cedula,  String tipoPersona, String datoAdicional){
+    public boolean registrarPersona(String nombre, String apellido, String cedula, String tipoPersona, String datoAdicional) {
         Persona nuevaPersona;
 
-        switch (tipoPersona.toLowerCase()){
-            case "remiso":
-                nuevaPersona = new Remiso(nombre, apellido, cedula);
-                break;
-            case "aplazado":
-                nuevaPersona = new Aplazado(nombre, apellido, cedula, parseFecha(datoAdicional));
-                break;
-            case "reclutado":
-                nuevaPersona = new Reclutado(nombre, apellido, cedula, datoAdicional);
-                break;
-            case "reservista":
-                nuevaPersona = new Reservista(nombre, apellido, cedula, datoAdicional);
-                break;
-            default:
+        switch (tipoPersona.toLowerCase()) {
+            case "remiso" -> nuevaPersona = new Remiso(nombre, apellido, cedula);
+            case "aplazado" -> nuevaPersona = new Aplazado(nombre, apellido, cedula, datoAdicional);
+            case "reclutado" -> nuevaPersona = new Reclutado(nombre, apellido, cedula, datoAdicional);
+            case "reservista" -> nuevaPersona = new Reservista(nombre, apellido, cedula, datoAdicional);
+            default -> {
                 return false;
+            }
         }
 
         return registro.registrarPersona(nuevaPersona);
     }
-    
-    // Convierte una cadena de texto en una fecha
-    private Date parseFecha(String fecha) {
-        try {
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            return formato.parse(fecha);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
+
+    public Persona consultarPersona(String cedula) {
+        return registro.buscarPersona(cedula); // Devuelve la persona si existe
     }
-    
-    // Valida si una cedula ya esta en el sistema
+
+   
     public boolean validarCedula(String cedula) {
-        if (registro.existePersona(cedula)) {
-            return true;
-        } else {
-            return false;
+        return registro.existePersona(cedula);
+    }
+    // imprimir personas por estado
+    public void imprimirPersonasPorEstado(Persona.EstadoPersona estado) {
+        List<Persona> personas = registro.obtenerPersonasPorEstado(estado);
+        System.out.println("Personas con estado " + estado + ":");
+        for (Persona persona : personas) {
+            System.out.println(persona.getNombre() + " " + persona.getApellido() + " - " + persona.getCedula());
         }
     }
 }

@@ -4,12 +4,17 @@
  */
 package edu.avanzada.taller1.control;
 
-/**
- *
- * @author anaro
- */
+import edu.avanzada.taller1.vista.VistaPrincipal;
+import edu.avanzada.taller1.modelo.RegistroPersona;
+
 public class Launcher {
     public static void main(String[] args) {
-        new ControladorPersona();
+        RegistroPersona registro = new RegistroPersona();
+        ControladorPersona controladorPersona = new ControladorPersona(registro);
+        ControladorCambioEstado controladorCambioEstado = new ControladorCambioEstado (registro);
+
+
+        VistaPrincipal vista = new VistaPrincipal(controladorPersona, controladorCambioEstado);
+        vista.setVisible(true);
     }
 }

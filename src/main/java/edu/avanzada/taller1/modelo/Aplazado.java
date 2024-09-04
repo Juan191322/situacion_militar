@@ -4,27 +4,20 @@
  */
 package edu.avanzada.taller1.modelo;
 
-import java.util.Date;
+public class Aplazado extends Persona {
+    private String fechaAplazamiento;
 
-/**
- * Clase que reprsenta a una persona aplazada.
- * @author user
- */
-public class Aplazado extends Persona{
-    private Date fechaAplazamiento;
-
-    public Aplazado(String nombre, String apellido, String cedula, Date fechaAplazamiento){
+    public Aplazado(String nombre, String apellido, String cedula, String fechaAplazamiento) {
         super(nombre, apellido, cedula);
+        this.setEstado(EstadoPersona.Aplazado);
         this.fechaAplazamiento = fechaAplazamiento;
     }
-    
-    // Getter y setter de fechaAplazamiento
 
-    public Date getFechaAplazamiento(){
+    public String getFechaAplazamiento() {
         return fechaAplazamiento;
     }
 
-    public void setFechaAplazamiento(Date fechaAplazamiento){
+    public void setFechaAplazamiento(String fechaAplazamiento) {
         this.fechaAplazamiento = fechaAplazamiento;
     }
 }

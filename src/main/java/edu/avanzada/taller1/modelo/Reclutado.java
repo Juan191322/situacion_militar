@@ -13,6 +13,7 @@ public class Reclutado extends Persona {
 
     public Reclutado(String nombre, String apellido, String cedula, String codigoReclutamiento){
         super(nombre, apellido, cedula);
+        this.setEstado(EstadoPersona.Reclutado);
         this.codigoReclutamiento = codigoReclutamiento;
     }
     
@@ -26,3 +27,4 @@ public class Reclutado extends Persona {
         this.codigoReclutamiento = codigoReclutamiento;
     }
 }
+

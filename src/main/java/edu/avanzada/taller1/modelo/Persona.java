@@ -22,6 +22,7 @@ public class Persona {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
+        this.estado = EstadoPersona.Aplazado;
     }
     
     // Getters y setters para los atriutos
@@ -58,3 +59,4 @@ public class Persona {
         this.estado = estado;
     }
 }
+
