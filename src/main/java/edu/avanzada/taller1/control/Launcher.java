@@ -6,10 +6,13 @@ package edu.avanzada.taller1.control;
 
 /**
  *
- * @author anaro
+ * @author Juan Gracia 
+ * @author Erika Juliana Puerto 
+ * @author Ana Karina Roa 
+ * Clase main que inicializa el control principal o la clase fachada
  */
 public class Launcher {
     public static void main(String[] args) {
-        new ControladorPersona();
+        new ControlPrincipal();
     }
 }
